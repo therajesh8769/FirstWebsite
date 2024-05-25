@@ -10,7 +10,6 @@ let h2=document.querySelector("#h2");
         this.classList.remove('animated');
         h2.innerText="Baby please don't leave my heart";
         h2.style.color='brown'
-        document.querySelector(".container").style.display = "block";
     });
 
 
@@ -21,7 +20,7 @@ let h2=document.querySelector("#h2");
     
 
     // Move the button container from display none to block
- 
+    document.querySelector(".container").style.display = "block";
 
     // Add click event listener to the existing button
     document.getElementById('pickupLineBtn').addEventListener('click', fetchPickupLine);
@@ -30,25 +29,14 @@ let h2=document.querySelector("#h2");
 // Function to fetch a random pickup line from the API
 async function fetchPickupLine() {
     try {
-        const url = 'https://pickup-lines-api.p.rapidapi.com/pickupline';
-const options = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': '9fc74d12cfmshe27a6cefee119d3p1b5221jsn71a618efab28',
-		'x-rapidapi-host': 'pickup-lines-api.p.rapidapi.com'
-	}
-};
-
-try {
-	const response = await fetch(url, options);
-	const result = await response.text();
-	let p=document.querySelector("#para");
-    p.innerText=result;
-    p.style.color='brown';
-} catch (error) {
-	console.error(error);
-}
-}
+        const response = await fetch('https://api.quotable.io/random?tags=love');
+        const data = await response.json();
+       let p=document.querySelector("#para");
+       p.innerText=data.content; // Display the pickup line
+    } catch (error) {
+        console.error('Error fetching pickup line:', error);
+        alert('Failed to fetch pickup line. Please try again later.');
+    }
 }
 
 // Add event listener to the homeBox element
