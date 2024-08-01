@@ -29,7 +29,7 @@ let h2=document.querySelector("#h2");
 // Function to fetch a random pickup line from the API
 async function fetchPickupLine() {
     try {
-        const response = await fetch('https://api.quotable.io/random?tags=love');
+        const response = await fetch('https://pebble-pickup-api.herokuapp.com/lines/rando');
         const data = await response.json();
        let p=document.querySelector("#para");
        p.innerText=data.content; // Display the pickup line
